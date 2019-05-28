@@ -1,4 +1,5 @@
 import { query as queryUsers, queryCurrent } from '@/services/user';
+import queryString from 'query-string';
 
 export default {
   namespace: 'user',
@@ -16,13 +17,21 @@ export default {
         payload: response,
       });
     },
-    *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
-      yield put({
-        type: 'saveCurrentUser',
-        payload: response,
-      });
-    },
+    // *fetchCurrent(_, { call, put }) {
+    //   const response = yield call(queryCurrent);
+    //   yield put({
+    //     type: 'saveCurrentUser',
+    //     payload: response,
+    //   });
+    // },
+
+    // *fetchCurrent({payload,}, { put, call, select }) {
+    //   const { data } = yield call(queryCurrent, queryString.stringify(payload));
+    //   yield put({
+    //     type: 'saveCurrentUser',
+    //     payload: data,
+    //   });
+    // },
   },
 
   reducers: {

@@ -2,11 +2,9 @@ import * as api from './service';
 import queryString from 'query-string';
 
 export default {
-  namespace: 'notice',
+  namespace: 'travelHome',
   state: {
-    noticeList: '',   //公告列表数据
-    userCode: '',   //登录人ID
-    noticeDetail: '',   //公告详情
+    travelList: '',
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -29,7 +27,7 @@ export default {
         yield put ({
           type:"save",
           payload:{
-            noticeList: data.data,
+            travelList: data.TSY,
           }
         })
       }
