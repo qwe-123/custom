@@ -23,11 +23,12 @@ export default {
   effects: {
     *getTrafficLogListForIndex({payload,}, { put, call, select }) {
       const { data } = yield call(api.getTrafficLogListForIndex, queryString.stringify(payload));
-      if(data.success){
+      let response = JSON.parse(data);
+      if(response.IsSuccess){
         yield put ({
           type:"save",
           payload:{
-            travelList: data.TSY,
+            travelList: response.TSY,
           }
         })
       }

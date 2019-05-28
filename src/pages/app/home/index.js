@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import { connect } from 'dva';
+import { Divider } from 'antd'
 import OrdinaryTable from '@/components/Table/index'
 
 class Home extends React.Component {
@@ -14,25 +15,22 @@ class Home extends React.Component {
 
   render() {
     const { travelList } = this.props.travelHome
-    console.log(travelList)
     const columns = [
       {
         title: '班次',
         dataIndex: 'busCardNo',
-        key: 'name',
         render: text => <a href="javascript:;">{text}</a>,
       },
       {
         title: '司机',
         dataIndex: 'driverName',
-        key: 'age',
       },
       {
         title: '起始站点',
         render: text => <div>{text.startStationTime} {text.startStationName}</div>,
       },
       {
-        title: '删除',
+        title: '操作',
         render: (text, record) => (
           <span>
             <a href="javascript:;">修改</a>
@@ -42,10 +40,13 @@ class Home extends React.Component {
         ),
       },
     ];
+    const pagination = {
+      pageSize: 10,
+    }
 
     return (
-      <div className={styles.noticePage}>
-        <OrdinaryTable columns={columns} data={travelList.TSY0}  />
+      <div className={styles.homePage}>
+        <OrdinaryTable columns={columns} data={travelList.TSY0} rowKey={'busCardNo'} pagination={pagination} bordered={true} />
       </div>
     );
   }
